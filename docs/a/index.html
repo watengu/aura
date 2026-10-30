@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>パターンA ねこのオーラ | オーラ育成 v0</title>
+<style>
+  :root{--bg:#FFF6E9;--card:#FFFDF8;--ink:#4A3428;--sub:#9A7B68;--pink:#E86A92;--gold:#C9A227;--line:#F0DFC8}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP",sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:430px;margin:0 auto;padding:20px 18px 40px}
+  .tag{display:inline-block;background:var(--pink);color:#fff;font-size:11px;letter-spacing:.14em;padding:5px 12px;border-radius:999px}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:30px;font-weight:600;margin:14px 0 4px;letter-spacing:.04em}
+  .lead{color:var(--sub);font-size:13px;line-height:1.7}
+  .stage{background:var(--card);border:1px solid var(--line);border-radius:28px;margin-top:18px;padding:22px 18px 18px;text-align:center;box-shadow:0 10px 30px rgba(201,162,39,.10)}
+  .glow{width:190px;height:190px;margin:2px auto 8px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 42%,#FFF3C4 0%,#FFE3EE 55%,rgba(255,227,238,0) 72%);transition:transform .5s ease}
+  .stage-name{font-family:"Hiragino Mincho ProN",serif;font-size:19px;margin-top:2px}
+  .stage-sub{color:var(--sub);font-size:12px;margin-top:4px}
+  .bubble{background:#FFF1F5;border-radius:18px;padding:12px 14px;font-size:13px;line-height:1.7;margin-top:14px;text-align:left}
+  .aura-row{display:flex;gap:10px;margin-top:14px}
+  .aura-box{flex:1;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px;text-align:center}
+  .aura-box .num{font-size:24px;font-weight:700;color:var(--pink)}
+  .aura-box .lab{font-size:11px;color:var(--sub);margin-top:2px;letter-spacing:.08em}
+  h2{font-family:"Hiragino Mincho ProN",serif;font-size:18px;margin:24px 0 10px}
+  .task{display:flex;align-items:center;gap:12px;width:100%;text-align:left;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:14px;margin-bottom:10px;cursor:pointer;font-size:14px;color:var(--ink)}
+  .task .pt{margin-left:auto;color:var(--gold);font-weight:700;white-space:nowrap}
+  .task .box{width:22px;height:22px;border-radius:50%;border:2px solid var(--pink);flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px}
+  .task.done{background:#FFF1F5;border-color:#F6C6D6}
+  .task.done .box{background:var(--pink)}
+  .tiles{display:flex;gap:5px;flex-wrap:wrap}
+  .tile{width:24px;height:24px;border-radius:8px;background:#F3E7D3}
+  .tile.on{background:linear-gradient(135deg,#F6C6D6,#F9E29C)}
+  .note{color:var(--sub);font-size:11px;line-height:1.8;margin-top:8px}
+  .foot{margin-top:26px;text-align:center;color:var(--sub);font-size:11px;line-height:1.9}
+  a{color:var(--pink)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="tag">PATTERN A</span>
+  <h1>ねこのオーラ</h1>
+  <p class="lead">育つのは、巫女ねこ。あなたの美容タスクで、ねこの輝きが少しずつ増えていきます。減ることはありません。</p>
+
+  <div class="stage">
+    <div class="glow" id="glow">
+      <svg width="130" height="120" viewBox="0 0 130 120" aria-label="巫女ねこ">
+        <polygon points="28,42 38,10 58,30" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
+        <polygon points="102,42 92,10 72,30" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
+        <polygon points="33,38 39,20 52,31" fill="#F6C6D6"/>
+        <polygon points="97,38 91,20 78,31" fill="#F6C6D6"/>
+        <ellipse cx="65" cy="68" rx="42" ry="38" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
+        <circle cx="50" cy="64" r="4" fill="#4A3428"/>
+        <circle cx="80" cy="64" r="4" fill="#4A3428"/>
+        <ellipse cx="65" cy="76" rx="5" ry="3.5" fill="#E86A92"/>
+        <path d="M65 79 Q60 85 54 82 M65 79 Q70 85 76 82" stroke="#4A3428" fill="none" stroke-width="2" stroke-linecap="round"/>
+        <circle cx="40" cy="76" r="6" fill="#F9D3DE" opacity=".8"/>
+        <circle cx="90" cy="76" r="6" fill="#F9D3DE" opacity=".8"/>
+        <rect x="52" y="98" width="26" height="10" rx="5" fill="#E86A92"/>
+        <circle cx="65" cy="103" r="3.4" fill="#F9E29C"/>
+      </svg>
+    </div>
+    <div class="stage-name" id="stageName">ほのかな光</div>
+    <div class="stage-sub" id="stageSub">タスクをすると、光が育ちます</div>
+    <div class="bubble" id="bubble">今日も来てくれてありがとう。できそうなものから、ひとつだけやってみて。</div>
+  </div>
+
+  <div class="aura-row">
+    <div class="aura-box"><div class="num" id="today">+0</div><div class="lab">今日のオーラ</div></div>
+    <div class="aura-box"><div class="num" id="total">1,240</div><div class="lab">ねこのオーラ累計</div></div>
+  </div>
+
+  <h2>今日の美容タスク</h2>
+  <button class="task" data-pt="100"><span class="box"></span>朝のスキンケア<span class="pt">+100 オーラ</span></button>
+  <button class="task" data-pt="150"><span class="box"></span>骨格に合うコーデを選ぶ<span class="pt">+150 オーラ</span></button>
+  <button class="task" data-pt="100"><span class="box"></span>夜のボディケア<span class="pt">+100 オーラ</span></button>
+  <p class="note">できない日は増減なし。オーラは減らず、ねこが責めることもありません。途切れたら、修復でそのまま続けられます。</p>
+
+  <h2>育ちの記録</h2>
+  <div class="tiles" id="tiles"></div>
+  <p class="note">タイルが埋まっていく1枚絵で、育ちが見えます。空きマスは罰ではなく、ただの空白です。</p>
+
+  <div class="foot">
+    オーラ育成 v0 ・ パターンA（比較用プロトタイプ）<br>
+    <a href="../">入口に戻る</a> ／ <a href="../b/">パターンBを見る</a>
+  </div>
+</div>
+<script>
+  var base=1240, today=0;
+  var stages=[[0,"ほのかな光","タスクをすると、光が育ちます","今日も来てくれてありがとう。できそうなものから、ひとつだけやってみて。"],
+    [100,"やわらかな光","ねこのまわりが明るくなってきた","わあ、光が増えた。あなたのケアが、わたしの輝きになってる。"],
+    [250,"満ちていく光","あと少しで次の姿","すごい、今日はよく育った日。週の記録カードにも残しておくね。"],
+    [350,"かがやく光","今日の分は満ちました","今日は満ちたよ。あとはゆっくり休んで。続きはまた明日。"]];
+  function render(){
+    document.getElementById("today").textContent="+"+today;
+    document.getElementById("total").textContent=(base+today).toLocaleString();
+    var s=stages[0]; for(var i=0;i<stages.length;i++){ if(today>=stages[i][0]) s=stages[i]; }
+    document.getElementById("stageName").textContent=s[1];
+    document.getElementById("stageSub").textContent=s[2];
+    document.getElementById("bubble").textContent=s[3];
+    document.getElementById("glow").style.transform="scale("+(1+today/1400)+")";
+    var t=document.getElementById("tiles"); t.innerHTML="";
+    for(var d=0;d<14;d++){ var div=document.createElement("div"); div.className="tile"+((d<9||(d===9&&today>0)||(d===10&&today>=250))?" on":""); t.appendChild(div); }
+  }
+  var tasks=document.querySelectorAll(".task");
+  tasks.forEach(function(b){ b.addEventListener("click",function(){
+    var pt=parseInt(b.dataset.pt,10);
+    if(b.classList.contains("done")){ b.classList.remove("done"); b.querySelector(".box").textContent=""; today-=pt; }
+    else{ b.classList.add("done"); b.querySelector(".box").textContent="✓"; today+=pt; }
+    render();
+  });});
+  render();
+</script>
+</body>
+</html>

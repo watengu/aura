@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>パターンB わたしのオーラ | オーラ育成 v0</title>
+<style>
+  :root{--bg:#070A14;--panel:#0D1222;--panel2:#111830;--ink:#E8F6FF;--sub:#7E8DB0;--cyan:#22D3EE;--mag:#F471B5;--yel:#FACC15;--line:#22305A}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:var(--bg);color:var(--ink);font-family:"Hiragino Sans","Noto Sans JP",sans-serif;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:430px;margin:0 auto;padding:20px 16px 40px}
+  .tag{display:inline-block;border:1px solid var(--mag);color:var(--mag);font-size:11px;letter-spacing:.18em;padding:5px 10px}
+  h1{font-size:30px;font-weight:800;margin:14px 0 4px;letter-spacing:.06em}
+  h1 .neon{color:var(--cyan);text-shadow:0 0 14px rgba(34,211,238,.8)}
+  .lead{color:var(--sub);font-size:13px;line-height:1.7}
+  .status{background:linear-gradient(180deg,var(--panel2),var(--panel));border:1px solid var(--line);margin-top:18px;padding:16px;clip-path:polygon(0 0,calc(100% - 18px) 0,100% 18px,100% 100%,18px 100%,0 calc(100% - 18px))}
+  .row{display:flex;align-items:center;gap:14px}
+  .avatar{width:74px;height:74px;flex:none;background:#0A0F1E;border:1px solid var(--cyan);display:flex;align-items:center;justify-content:center}
+  .lv{font-size:11px;color:var(--sub);letter-spacing:.14em}
+  .rank{font-size:34px;font-weight:800;color:var(--yel);line-height:1;text-shadow:0 0 16px rgba(250,204,21,.55)}
+  .points{font-family:ui-monospace,Menlo,monospace;font-size:30px;font-weight:700;color:var(--cyan);margin-top:10px}
+  .points small{font-size:12px;color:var(--sub);letter-spacing:.12em}
+  .bar{height:10px;background:#0A0F1E;border:1px solid var(--line);margin-top:8px}
+  .bar i{display:block;height:100%;background:linear-gradient(90deg,var(--cyan),var(--mag));width:42%;transition:width .5s ease}
+  .delta{font-family:ui-monospace,Menlo,monospace;font-size:13px;height:18px;margin-top:6px;color:var(--yel)}
+  h2{font-size:13px;letter-spacing:.18em;color:var(--sub);margin:24px 0 10px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .stat{background:var(--panel);border:1px solid var(--line);padding:10px 12px}
+  .stat .name{font-size:12px;color:var(--sub)}
+  .stat .val{font-family:ui-monospace,Menlo,monospace;font-size:20px;font-weight:700;margin-top:2px}
+  .stat .bar{margin-top:6px;height:6px}
+  .quest{display:flex;align-items:center;gap:10px;width:100%;text-align:left;background:var(--panel);border:1px solid var(--line);color:var(--ink);padding:13px 12px;margin-bottom:8px;cursor:pointer;font-size:13px}
+  .quest .pt{margin-left:auto;font-family:ui-monospace,Menlo,monospace;color:var(--cyan);font-weight:700;white-space:nowrap}
+  .quest.done{border-color:var(--cyan);background:#0E1B2E}
+  .quest.miss{border-color:#5A2233}
+  .quest.miss .pt{color:var(--mag)}
+  .quest.done .pt{color:var(--sub)}
+  .note{color:var(--sub);font-size:11px;line-height:1.8;margin-top:8px}
+  .foot{margin-top:26px;text-align:center;color:var(--sub);font-size:11px;line-height:1.9}
+  a{color:var(--cyan)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="tag">PATTERN B</span>
+  <h1>わたしの<span class="neon">オーラ</span></h1>
+  <p class="lead">育つのは、あなた自身のステータス。行動で大きく上がり、失敗で下がる。攻略するゲームとしてのオーラ育成。</p>
+
+  <div class="status">
+    <div class="row">
+      <div class="avatar">
+        <svg width="52" height="48" viewBox="0 0 130 120" aria-label="アバター">
+          <polygon points="28,42 38,10 58,30" fill="#0A0F1E" stroke="#22D3EE" stroke-width="3"/>
+          <polygon points="102,42 92,10 72,30" fill="#0A0F1E" stroke="#22D3EE" stroke-width="3"/>
+          <ellipse cx="65" cy="68" rx="42" ry="38" fill="#0A0F1E" stroke="#22D3EE" stroke-width="3"/>
+          <circle cx="50" cy="64" r="4.5" fill="#22D3EE"/>
+          <circle cx="80" cy="64" r="4.5" fill="#22D3EE"/>
+          <path d="M56 82 Q65 76 74 82" stroke="#F471B5" fill="none" stroke-width="3" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div>
+        <div class="lv">TOTAL AURA RANK</div>
+        <div class="rank" id="rank">RANK C</div>
+        <div class="lv" id="nextRank">次のランクまで あと 2,600</div>
+      </div>
+    </div>
+    <div class="points"><span id="points">12,400</span> <small>AURA POINTS</small></div>
+    <div class="bar"><i id="expbar"></i></div>
+    <div class="delta" id="delta"></div>
+  </div>
+
+  <h2>STATUS</h2>
+  <div class="grid" id="grid"></div>
+
+  <h2>QUEST（今日の美容タスク）</h2>
+  <button class="quest" data-pt="1000" data-stat="0">集中スキンケアを完了せよ<span class="pt">+1000 AURA</span></button>
+  <button class="quest" data-pt="1500" data-stat="2">姿勢トレーニング 5分<span class="pt">+1500 AURA</span></button>
+  <button class="quest" data-pt="1000" data-stat="4">会話力タスク：傾聴モード<span class="pt">+1000 AURA</span></button>
+  <button class="quest miss" id="missBtn">うっかり忘れた日<span class="pt">-500 AURA</span></button>
+  <p class="note">増減は大づかみに。かっこいい行動で +1000、失敗で -500。数字そのものが拡散言語になる、という型です。</p>
+
+  <div class="foot">
+    オーラ育成 v0 ・ パターンB（比較用プロトタイプ）<br>
+    原概念の最大構成で出しています。人へのランク付け等は正式版では裁定対象です。<br>
+    <a href="../">入口に戻る</a> ／ <a href="../a/">パターンAを見る</a>
+  </div>
+</div>
+<script>
+  var points=12400;
+  var stats=[["教養値",62],["所作美度",48],["姿勢",55],["生活リズム",70],["会話力",44],["感性",58]];
+  var ranks=[[0,"RANK D"],[8000,"RANK C"],[15000,"RANK B"],[22000,"RANK A"],[30000,"RANK S"]];
+  function rankOf(p){ var r=ranks[0], nx=null; for(var i=0;i<ranks.length;i++){ if(p>=ranks[i][0]){ r=ranks[i]; nx=ranks[i+1]||null; } } return [r,nx]; }
+  function render(delta){
+    document.getElementById("points").textContent=points.toLocaleString();
+    var rr=rankOf(points);
+    document.getElementById("rank").textContent=rr[0][1];
+    document.getElementById("nextRank").textContent=rr[1]?("次のランクまで あと "+(rr[1][0]-points).toLocaleString()):"最高ランク到達";
+    document.getElementById("expbar").style.width=Math.min(100,Math.max(4,points/300))+"%";
+    document.getElementById("delta").textContent=delta||"";
+    var g=document.getElementById("grid"); g.innerHTML="";
+    stats.forEach(function(s){ var d=document.createElement("div"); d.className="stat";
+      d.innerHTML='<div class="name">'+s[0]+'</div><div class="val">'+s[1]+'</div><div class="bar"><i style="width:'+s[1]+'%"></i></div>'; g.appendChild(d); });
+  }
+  document.querySelectorAll(".quest[data-pt]").forEach(function(b){ b.addEventListener("click",function(){
+    var pt=parseInt(b.dataset.pt,10), si=parseInt(b.dataset.stat,10);
+    if(b.classList.contains("done")){ b.classList.remove("done"); points-=pt; stats[si][1]-=8; render("-"+pt.toLocaleString()+" AURA"); }
+    else{ b.classList.add("done"); points+=pt; stats[si][1]=Math.min(99,stats[si][1]+8); render("+"+pt.toLocaleString()+" AURA"); }
+  });});
+  document.getElementById("missBtn").addEventListener("click",function(){ points=Math.max(0,points-500); render("-500 AURA …サボりは減点"); });
+  render("");
+</script>
+</body>
+</html>
