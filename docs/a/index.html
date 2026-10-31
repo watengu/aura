@@ -27,6 +27,9 @@
   .task .box{width:22px;height:22px;border-radius:50%;border:2px solid var(--pink);flex:none;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px}
   .task.done{background:#FFF1F5;border-color:#F6C6D6}
   .task.done .box{background:var(--pink)}
+  .rem{display:flex;align-items:center;gap:10px;background:#FFF1F5;border:1px dashed #F0A8C0;border-radius:14px;padding:11px 13px;font-size:13px;margin-bottom:8px}
+  .rem .pt{margin-left:auto;color:var(--gold);font-weight:700;white-space:nowrap}
+  .rem-done{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:11px 13px;font-size:13px;color:var(--sub)}
   .tiles{display:flex;gap:5px;flex-wrap:wrap}
   .tile{width:24px;height:24px;border-radius:8px;background:#F3E7D3}
   .tile.on{background:linear-gradient(135deg,#F6C6D6,#F9E29C)}
@@ -70,18 +73,22 @@
   </div>
 
   <h2>今日の美容タスク</h2>
-  <button class="task" data-pt="100"><span class="box"></span>朝のスキンケア<span class="pt">+100 オーラ</span></button>
-  <button class="task" data-pt="150"><span class="box"></span>骨格に合うコーデを選ぶ<span class="pt">+150 オーラ</span></button>
-  <button class="task" data-pt="100"><span class="box"></span>夜のボディケア<span class="pt">+100 オーラ</span></button>
-  <p class="note">できない日は増減なし。オーラは減らず、ねこが責めることもありません。途切れたら、修復でそのまま続けられます。</p>
+  <button class="task" data-pt="100" data-name="朝のスキンケア"><span class="box"></span>朝のスキンケア<span class="pt">+100 オーラ</span></button>
+  <button class="task" data-pt="150" data-name="骨格に合うコーデを選ぶ"><span class="box"></span>骨格に合うコーデを選ぶ<span class="pt">+150 オーラ</span></button>
+  <button class="task" data-pt="100" data-name="夜のボディケア"><span class="box"></span>夜のボディケア<span class="pt">+100 オーラ</span></button>
+  <p class="note">できない日は増減なし。オーラは減らず、ねこが責めることもありません。</p>
+
+  <h2>つづきは、ここから</h2>
+  <div id="remaining"></div>
+  <p class="note">残っているタスクは、ここにもう一度出します。探し直さなくて大丈夫。</p>
 
   <h2>育ちの記録</h2>
   <div class="tiles" id="tiles"></div>
   <p class="note">タイルが埋まっていく1枚絵で、育ちが見えます。空きマスは罰ではなく、ただの空白です。</p>
 
   <div class="foot">
-    オーラ育成 v0 ・ パターンA（比較用プロトタイプ）<br>
-    <a href="../">入口に戻る</a> ／ <a href="../b/">パターンBを見る</a>
+    オーラ育成 v0.1 ・ パターンA（土台として採用）<br>
+    <a href="../">入口に戻る</a> ／ <a href="../b/">保管中のパターンBを見る</a>
   </div>
 </div>
 <script>
@@ -98,6 +105,12 @@
     document.getElementById("stageSub").textContent=s[2];
     document.getElementById("bubble").textContent=s[3];
     document.getElementById("glow").style.transform="scale("+(1+today/1400)+")";
+    var rem=document.getElementById("remaining"); rem.innerHTML="";
+    var left=0;
+    tasks.forEach(function(b){ if(!b.classList.contains("done")){ left++;
+      var d=document.createElement("div"); d.className="rem";
+      d.innerHTML="<span>"+b.dataset.name+"</span><span class='pt'>+"+b.dataset.pt+" オーラ</span>"; rem.appendChild(d); } });
+    if(left===0){ var d2=document.createElement("div"); d2.className="rem-done"; d2.textContent="今日の分は全部できました。ねこが光ってます。"; rem.appendChild(d2); }
     var t=document.getElementById("tiles"); t.innerHTML="";
     for(var d=0;d<14;d++){ var div=document.createElement("div"); div.className="tile"+((d<9||(d===9&&today>0)||(d===10&&today>=250))?" on":""); t.appendChild(div); }
   }
