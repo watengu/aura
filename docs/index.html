@@ -3,55 +3,61 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>オーラ育成 2パターン v0</title>
+<title>ねこのオーラ | オーラ育成（エナエマ拡張）</title>
+<meta name="description" content="美容タスクで巫女ねこのオーラが育つ、エナエマの拡張コンテンツ。減らない、責めない、ランクなし。準備中。">
 <style>
   *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;background:#111;color:#222}
-  .wrap{max-width:430px;margin:0 auto}
-  .head{background:#fff;padding:22px 20px 16px}
-  .head .k{font-size:11px;letter-spacing:.16em;color:#888}
-  .head h1{font-size:24px;margin:8px 0 6px}
-  .head p{font-size:13px;color:#666;line-height:1.7}
-  a.card{display:block;text-decoration:none;padding:26px 22px 30px}
-  a.a{background:#FFF6E9;color:#4A3428}
-  a.b{background:#070A14;color:#E8F6FF}
-  .tag{font-size:11px;letter-spacing:.16em;padding:5px 10px;border-radius:999px;display:inline-block}
-  a.a .tag{background:#E86A92;color:#fff}
-  a.b .tag{border:1px solid #F471B5;color:#F471B5;border-radius:0}
-  .card h2{font-size:27px;margin:14px 0 8px}
-  a.a h2{font-family:"Hiragino Mincho ProN",serif;font-weight:600}
-  a.b h2{font-weight:800}
-  a.b h2 span{color:#22D3EE}
-  .card p{font-size:13px;line-height:1.8;opacity:.85}
-  .axes{font-size:12px;margin-top:14px;line-height:2}
-  .go{margin-top:16px;font-size:13px;font-weight:700}
-  a.a .go{color:#E86A92}
-  a.b .go{color:#22D3EE}
-  .foot{background:#fff;padding:16px 20px 26px;color:#888;font-size:11px;line-height:1.8}
+  body{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;background:#FFF6E9;color:#4A3428;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:430px;margin:0 auto;padding:28px 20px 40px}
+  .tag{display:inline-block;background:#E86A92;color:#fff;font-size:11px;letter-spacing:.14em;padding:5px 12px;border-radius:999px}
+  h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:32px;font-weight:600;margin:16px 0 8px;letter-spacing:.04em}
+  .lead{font-size:14px;line-height:1.9;color:#7A5B4A}
+  .stage{background:#FFFDF8;border:1px solid #F0DFC8;border-radius:28px;margin-top:22px;padding:26px 18px 20px;text-align:center;box-shadow:0 10px 30px rgba(201,162,39,.10)}
+  .glow{width:170px;height:170px;margin:0 auto 6px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 42%,#FFF3C4 0%,#FFE3EE 55%,rgba(255,227,238,0) 72%)}
+  .stage-name{font-family:"Hiragino Mincho ProN",serif;font-size:18px;margin-top:2px}
+  .stage-sub{color:#9A7B68;font-size:12px;margin-top:4px;line-height:1.7}
+  h2{font-family:"Hiragino Mincho ProN",serif;font-size:18px;margin:26px 0 10px}
+  .rule{background:#FFFDF8;border:1px solid #F0DFC8;border-radius:18px;padding:14px 16px;font-size:13px;line-height:1.9;margin-bottom:10px}
+  .rule b{color:#E86A92}
+  .status{background:#FFF1F5;border:1px dashed #F0A8C0;border-radius:14px;padding:13px 15px;font-size:13px;line-height:1.8;margin-top:22px}
+  a.btn{display:block;text-align:center;background:#E86A92;color:#fff;text-decoration:none;font-weight:700;font-size:15px;border-radius:999px;padding:15px;margin-top:16px}
+  .foot{margin-top:26px;text-align:center;color:#9A7B68;font-size:11px;line-height:1.9}
+  .foot a{color:#E86A92}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="head">
-    <div class="k">ENAEMA EXPANSION ・ V0</div>
-    <h1>オーラ育成、2パターン</h1>
-    <p>判定が決まりました。土台はパターンAです。Bは対極の原形として保管しています。Aはここから先の工程の土台になります。</p>
+  <span class="tag">ENAEMA EXPANSION</span>
+  <h1>ねこのオーラ</h1>
+  <p class="lead">育つのは、エナエマの巫女ねこ。あなたの美容タスクが進むたび、ねこのオーラの輝きが少しずつ増えていきます。</p>
+
+  <div class="stage">
+    <div class="glow">
+      <svg width="120" height="110" viewBox="0 0 130 120" aria-label="巫女ねこ">
+        <polygon points="28,42 38,10 58,30" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
+        <polygon points="102,42 92,10 72,30" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
+        <circle cx="65" cy="66" r="42" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
+        <circle cx="50" cy="62" r="4" fill="#4A3428"/>
+        <circle cx="80" cy="62" r="4" fill="#4A3428"/>
+        <path d="M60 76 Q65 80 70 76" stroke="#4A3428" stroke-width="2" fill="none" stroke-linecap="round"/>
+        <circle cx="42" cy="74" r="5" fill="#F6C6D6"/>
+        <circle cx="88" cy="74" r="5" fill="#F6C6D6"/>
+      </svg>
+    </div>
+    <div class="stage-name">巫女ねこのオーラ</div>
+    <p class="stage-sub">タスクで輝きが増えるだけ。<br>減らない、責めない、ランクなし。</p>
   </div>
-  <a class="card a" href="./a/">
-    <span class="tag">PATTERN A ・ 土台に採用</span>
-    <h2>ねこのオーラ</h2>
-    <p>育つのは巫女ねこ。タスクで輝きが増えるだけ。減らない、責めない、ランクなし。</p>
-    <div class="axes">色：クリームとピンク ／ 形：丸 ／ 感情：世話と癒し</div>
-    <div class="go">Aを開く →</div>
-  </a>
-  <a class="card b" href="./b/">
-    <span class="tag">PATTERN B ・ 保管（原形）</span>
-    <h2>わたしの<span>オーラ</span></h2>
-    <p>育つのは自分のステータス。+1000 / -500 の増減とランクで攻略するゲーム型。</p>
-    <div class="axes">色：黒とネオン ／ 形：角 ／ 感情：攻略と達成</div>
-    <div class="go">Bを開く →</div>
-  </a>
-  <div class="foot">オーラ育成（エナエマ拡張）比較用 v0 ・ エナエマ本体とは別の試作です</div>
+
+  <h2>あそびかた</h2>
+  <div class="rule"><b>1.</b> エナエマで今日の美容タスクをこなす</div>
+  <div class="rule"><b>2.</b> ねこのオーラに輝きがたまる</div>
+  <div class="rule"><b>3.</b> 輝きが増えるほど、ねこのまわりが明るく育っていく</div>
+
+  <div class="status">いまは準備中です。エナエマ本体の拡張コンテンツとして開発しています。公開したら、ここでお知らせします。</div>
+
+  <a class="btn" href="https://enaema-ruddy.vercel.app">エナエマを開く →</a>
+
+  <div class="foot">オーラ育成（エナエマ拡張）・ 制作：茶屋<br><a href="./a/">試作版（パターンA）を見る</a></div>
 </div>
 </body>
 </html>
