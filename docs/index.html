@@ -12,10 +12,9 @@
   .tag{display:inline-block;background:#E86A92;color:#fff;font-size:11px;letter-spacing:.14em;padding:5px 12px;border-radius:999px}
   h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:32px;font-weight:600;margin:16px 0 8px;letter-spacing:.04em}
   .lead{font-size:14px;line-height:1.9;color:#7A5B4A}
-  .stage{background:#FFFDF8;border:1px solid #F0DFC8;border-radius:28px;margin-top:22px;padding:26px 18px 20px;text-align:center;box-shadow:0 10px 30px rgba(201,162,39,.10)}
-  .glow{width:170px;height:170px;margin:0 auto 6px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 42%,#FFF3C4 0%,#FFE3EE 55%,rgba(255,227,238,0) 72%)}
-  .stage-name{font-family:"Hiragino Mincho ProN",serif;font-size:18px;margin-top:2px}
-  .stage-sub{color:#9A7B68;font-size:12px;margin-top:4px;line-height:1.7}
+  .hero{margin-top:20px;border-radius:24px;overflow:hidden;box-shadow:0 14px 34px rgba(201,162,39,.16);border:1px solid #F0DFC8}
+  .hero img{display:block;width:100%;height:auto}
+  .stage-sub{text-align:center;color:#9A7B68;font-size:12px;margin-top:12px;line-height:1.8}
   h2{font-family:"Hiragino Mincho ProN",serif;font-size:18px;margin:26px 0 10px}
   .rule{background:#FFFDF8;border:1px solid #F0DFC8;border-radius:18px;padding:14px 16px;font-size:13px;line-height:1.9;margin-bottom:10px}
   .rule b{color:#E86A92}
@@ -31,22 +30,8 @@
   <h1>ねこのオーラ</h1>
   <p class="lead">育つのは、エナエマの巫女ねこ。あなたの美容タスクが進むたび、ねこのオーラの輝きが少しずつ増えていきます。</p>
 
-  <div class="stage">
-    <div class="glow">
-      <svg width="120" height="110" viewBox="0 0 130 120" aria-label="巫女ねこ">
-        <polygon points="28,42 38,10 58,30" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
-        <polygon points="102,42 92,10 72,30" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
-        <circle cx="65" cy="66" r="42" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
-        <circle cx="50" cy="62" r="4" fill="#4A3428"/>
-        <circle cx="80" cy="62" r="4" fill="#4A3428"/>
-        <path d="M60 76 Q65 80 70 76" stroke="#4A3428" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <circle cx="42" cy="74" r="5" fill="#F6C6D6"/>
-        <circle cx="88" cy="74" r="5" fill="#F6C6D6"/>
-      </svg>
-    </div>
-    <div class="stage-name">巫女ねこのオーラ</div>
-    <p class="stage-sub">タスクで輝きが増えるだけ。<br>減らない、責めない、ランクなし。</p>
-  </div>
+  <div class="hero"><img src="./neko-hero.jpg" alt="巫女ねこ"></div>
+  <p class="stage-sub">タスクで輝きが増えるだけ。減らない、責めない、ランクなし。</p>
 
   <h2>あそびかた</h2>
   <div class="rule"><b>1.</b> エナエマで今日の美容タスクをこなす</div>
