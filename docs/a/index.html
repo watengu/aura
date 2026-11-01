@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>パターンA ねこのオーラ | オーラ育成 v0</title>
+<title>ねこのオーラ | オーラ育成</title>
 <style>
   :root{--bg:#FFF6E9;--card:#FFFDF8;--ink:#4A3428;--sub:#9A7B68;--pink:#E86A92;--gold:#C9A227;--line:#F0DFC8}
   *{box-sizing:border-box;margin:0;padding:0}
@@ -12,11 +12,12 @@
   .tag{display:inline-block;background:var(--pink);color:#fff;font-size:11px;letter-spacing:.14em;padding:5px 12px;border-radius:999px}
   h1{font-family:"Hiragino Mincho ProN","Yu Mincho",serif;font-size:30px;font-weight:600;margin:14px 0 4px;letter-spacing:.04em}
   .lead{color:var(--sub);font-size:13px;line-height:1.7}
-  .stage{background:var(--card);border:1px solid var(--line);border-radius:28px;margin-top:18px;padding:22px 18px 18px;text-align:center;box-shadow:0 10px 30px rgba(201,162,39,.10)}
-  .glow{width:190px;height:190px;margin:2px auto 8px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 50% 42%,#FFF3C4 0%,#FFE3EE 55%,rgba(255,227,238,0) 72%);transition:transform .5s ease}
-  .stage-name{font-family:"Hiragino Mincho ProN",serif;font-size:19px;margin-top:2px}
-  .stage-sub{color:var(--sub);font-size:12px;margin-top:4px}
+  .stage{background:var(--card);border:1px solid var(--line);border-radius:28px;margin-top:18px;padding:18px 18px 18px;text-align:center;box-shadow:0 10px 30px rgba(201,162,39,.10)}
+  .stage-img{width:100%;max-width:300px;border-radius:20px;display:block;margin:0 auto;transition:opacity .45s ease}
+  .stage-name{font-family:"Hiragino Mincho ProN",serif;font-size:20px;margin-top:12px}
+  .stage-next{color:var(--gold);font-size:12px;font-weight:700;margin-top:5px;letter-spacing:.04em}
   .bubble{background:#FFF1F5;border-radius:18px;padding:12px 14px;font-size:13px;line-height:1.7;margin-top:14px;text-align:left}
+  .tomorrow{display:none;background:#FFF8E6;border:1px solid #EFDDAC;border-radius:14px;padding:11px 13px;font-size:13px;line-height:1.7;margin-top:10px;text-align:left}
   .aura-row{display:flex;gap:10px;margin-top:14px}
   .aura-box{flex:1;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:12px;text-align:center}
   .aura-box .num{font-size:24px;font-weight:700;color:var(--pink)}
@@ -40,36 +41,21 @@
 </head>
 <body>
 <div class="wrap">
-  <span class="tag">PATTERN A</span>
+  <span class="tag">オーラ育成</span>
   <h1>ねこのオーラ</h1>
-  <p class="lead">育つのは、巫女ねこ。あなたの美容タスクで、ねこの輝きが少しずつ増えていきます。減ることはありません。</p>
+  <p class="lead">育つのは、巫女ねこ。あなたの美容タスクで、ねこの輝きが少しずつ増えていきます。減ることはありません。育ちはこの端末に残ります。</p>
 
   <div class="stage">
-    <div class="glow" id="glow">
-      <svg width="130" height="120" viewBox="0 0 130 120" aria-label="巫女ねこ">
-        <polygon points="28,42 38,10 58,30" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
-        <polygon points="102,42 92,10 72,30" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
-        <polygon points="33,38 39,20 52,31" fill="#F6C6D6"/>
-        <polygon points="97,38 91,20 78,31" fill="#F6C6D6"/>
-        <ellipse cx="65" cy="68" rx="42" ry="38" fill="#FFFDF8" stroke="#E8CDB4" stroke-width="2"/>
-        <circle cx="50" cy="64" r="4" fill="#4A3428"/>
-        <circle cx="80" cy="64" r="4" fill="#4A3428"/>
-        <ellipse cx="65" cy="76" rx="5" ry="3.5" fill="#E86A92"/>
-        <path d="M65 79 Q60 85 54 82 M65 79 Q70 85 76 82" stroke="#4A3428" fill="none" stroke-width="2" stroke-linecap="round"/>
-        <circle cx="40" cy="76" r="6" fill="#F9D3DE" opacity=".8"/>
-        <circle cx="90" cy="76" r="6" fill="#F9D3DE" opacity=".8"/>
-        <rect x="52" y="98" width="26" height="10" rx="5" fill="#E86A92"/>
-        <circle cx="65" cy="103" r="3.4" fill="#F9E29C"/>
-      </svg>
-    </div>
+    <img class="stage-img" id="stageImg" src="img/stage1.jpg" alt="巫女ねこの今の姿">
     <div class="stage-name" id="stageName">ほのかな光</div>
-    <div class="stage-sub" id="stageSub">タスクをすると、光が育ちます</div>
+    <div class="stage-next" id="stageNext"></div>
     <div class="bubble" id="bubble">今日も来てくれてありがとう。できそうなものから、ひとつだけやってみて。</div>
+    <div class="tomorrow" id="tomorrow">明日はここから：朝になるとタスクが新しくなります。今日の育ちはそのまま残るので、安心して休んでね。</div>
   </div>
 
   <div class="aura-row">
     <div class="aura-box"><div class="num" id="today">+0</div><div class="lab">今日のオーラ</div></div>
-    <div class="aura-box"><div class="num" id="total">1,240</div><div class="lab">ねこのオーラ累計</div></div>
+    <div class="aura-box"><div class="num" id="total">0</div><div class="lab">ねこのオーラ累計</div></div>
   </div>
 
   <h2>今日の美容タスク</h2>
@@ -87,39 +73,61 @@
   <p class="note">タイルが埋まっていく1枚絵で、育ちが見えます。空きマスは罰ではなく、ただの空白です。</p>
 
   <div class="foot">
-    オーラ育成 v0.1 ・ パターンA（土台として採用）<br>
-    <a href="../">入口に戻る</a> ／ <a href="../b/">保管中のパターンBを見る</a>
+    オーラ育成 v0.2 ・ パターンA（土台）<br>
+    <a href="../b/">保管中のパターンBを見る</a>
   </div>
 </div>
 <script>
-  var base=1240, today=0;
-  var stages=[[0,"ほのかな光","タスクをすると、光が育ちます","今日も来てくれてありがとう。できそうなものから、ひとつだけやってみて。"],
-    [100,"やわらかな光","ねこのまわりが明るくなってきた","わあ、光が増えた。あなたのケアが、わたしの輝きになってる。"],
-    [250,"満ちていく光","あと少しで次の姿","すごい、今日はよく育った日。週の記録カードにも残しておくね。"],
-    [350,"かがやく光","今日の分は満ちました","今日は満ちたよ。あとはゆっくり休んで。続きはまた明日。"]];
+  var PTS=[100,150,100];
+  var STAGES=[
+    {at:0,   name:"ほのかな光",   img:"img/stage1.jpg", msg:"今日も来てくれてありがとう。できそうなものから、ひとつだけやってみて。"},
+    {at:100, name:"やわらかな光", img:"img/stage2.jpg", msg:"わあ、光が増えた。あなたのケアが、わたしの輝きになってる。"},
+    {at:250, name:"満ちていく光", img:"img/stage3.jpg", msg:"すごい、今日はよく育った日。この調子で、最後の姿まであと少し。"},
+    {at:350, name:"かがやく光",   img:"img/stage4.jpg", msg:"今日は満ちたよ。いちばん上の姿になったね。あとはゆっくり休んで。続きはまた明日。"}
+  ];
+  var KEY="aura-v02";
+  function todayStr(){ var d=new Date(); return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2); }
+  function load(){
+    var s=null; try{ s=JSON.parse(localStorage.getItem(KEY)||"null"); }catch(e){}
+    if(!s||typeof s.total!=="number"){ s={total:0,day:todayStr(),done:[false,false,false],history:[]}; }
+    if(s.day!==todayStr()){
+      var n=s.done.filter(Boolean).length;
+      s.history.push({d:s.day,n:n}); if(s.history.length>13) s.history=s.history.slice(-13);
+      s.day=todayStr(); s.done=[false,false,false];
+      save(s);
+    }
+    return s;
+  }
+  function save(s){ try{ localStorage.setItem(KEY,JSON.stringify(s)); }catch(e){} }
+  var state=load();
+  var tasks=[].slice.call(document.querySelectorAll(".task"));
+  function stageOf(total){ var cur=STAGES[0],nx=null; for(var i=0;i<STAGES.length;i++){ if(total>=STAGES[i].at){ cur=STAGES[i]; nx=STAGES[i+1]||null; } } return [cur,nx]; }
   function render(){
-    document.getElementById("today").textContent="+"+today;
-    document.getElementById("total").textContent=(base+today).toLocaleString();
-    var s=stages[0]; for(var i=0;i<stages.length;i++){ if(today>=stages[i][0]) s=stages[i]; }
-    document.getElementById("stageName").textContent=s[1];
-    document.getElementById("stageSub").textContent=s[2];
-    document.getElementById("bubble").textContent=s[3];
-    document.getElementById("glow").style.transform="scale("+(1+today/1400)+")";
+    var todayPts=0; state.done.forEach(function(d,i){ if(d) todayPts+=PTS[i]; });
+    document.getElementById("today").textContent="+"+todayPts;
+    document.getElementById("total").textContent=state.total.toLocaleString();
+    var sn=stageOf(state.total), cur=sn[0], nx=sn[1];
+    var img=document.getElementById("stageImg");
+    if(img.getAttribute("src")!==cur.img){ img.style.opacity="0"; setTimeout(function(){ img.src=cur.img; img.onload=function(){ img.style.opacity="1"; }; setTimeout(function(){ img.style.opacity="1"; },350); },180); }
+    document.getElementById("stageName").textContent=cur.name;
+    document.getElementById("stageNext").textContent=nx?("次の姿「"+nx.name+"」まで あと "+(nx.at-state.total)+" オーラ"): "いちばん上の姿です。光はこれからも累計に積み上がります";
+    document.getElementById("bubble").textContent=cur.msg;
+    var allDone=state.done.every(Boolean);
+    document.getElementById("tomorrow").style.display=allDone?"block":"none";
+    tasks.forEach(function(b,i){ if(state.done[i]){ b.classList.add("done"); b.querySelector(".box").textContent="✓"; } else { b.classList.remove("done"); b.querySelector(".box").textContent=""; } });
     var rem=document.getElementById("remaining"); rem.innerHTML="";
     var left=0;
-    tasks.forEach(function(b){ if(!b.classList.contains("done")){ left++;
-      var d=document.createElement("div"); d.className="rem";
-      d.innerHTML="<span>"+b.dataset.name+"</span><span class='pt'>+"+b.dataset.pt+" オーラ</span>"; rem.appendChild(d); } });
+    tasks.forEach(function(b,i){ if(!state.done[i]){ left++; var d=document.createElement("div"); d.className="rem"; d.innerHTML="<span>"+b.dataset.name+"</span><span class='pt'>+"+b.dataset.pt+" オーラ</span>"; rem.appendChild(d); } });
     if(left===0){ var d2=document.createElement("div"); d2.className="rem-done"; d2.textContent="今日の分は全部できました。ねこが光ってます。"; rem.appendChild(d2); }
     var t=document.getElementById("tiles"); t.innerHTML="";
-    for(var d=0;d<14;d++){ var div=document.createElement("div"); div.className="tile"+((d<9||(d===9&&today>0)||(d===10&&today>=250))?" on":""); t.appendChild(div); }
+    var cells=state.history.map(function(h){ return h.n>0; }); cells.push(todayPts>0);
+    while(cells.length<14) cells.unshift(false);
+    cells.slice(-14).forEach(function(on){ var div=document.createElement("div"); div.className="tile"+(on?" on":""); t.appendChild(div); });
   }
-  var tasks=document.querySelectorAll(".task");
-  tasks.forEach(function(b){ b.addEventListener("click",function(){
-    var pt=parseInt(b.dataset.pt,10);
-    if(b.classList.contains("done")){ b.classList.remove("done"); b.querySelector(".box").textContent=""; today-=pt; }
-    else{ b.classList.add("done"); b.querySelector(".box").textContent="✓"; today+=pt; }
-    render();
+  tasks.forEach(function(b,i){ b.addEventListener("click",function(){
+    state.done[i]=!state.done[i];
+    state.total=Math.max(0,state.total+(state.done[i]?PTS[i]:-PTS[i]));
+    save(state); render();
   });});
   render();
 </script>
