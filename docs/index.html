@@ -1,17 +1,127 @@
 <!DOCTYPE html>
-<html lang="ja">
-<head>
-<meta charset="utf-8">
+<html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="refresh" content="0; url=./a/">
-<title>オーラ育成</title>
+<title>オーラ育成 | あなたのケアが、ねこの冒険になる</title>
 <style>
-  body{font-family:"Hiragino Sans","Noto Sans JP",sans-serif;background:#FFF6E9;color:#4A3428;text-align:center;padding:48px 20px}
-  a{color:#E86A92;font-weight:700}
-</style>
-</head>
-<body>
-  <p>オーラ育成「ねこのオーラ」へ移動します。</p>
-  <p><a href="./a/">開かない場合はこちら</a></p>
-</body>
-</html>
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{background:#FDF6EC;font-family:"Hiragino Maru Gothic ProN","Hiragino Sans","Noto Sans JP",sans-serif;color:#503A30}
+  .phone{width:100%;max-width:430px;margin:0 auto;padding-bottom:34px;background:linear-gradient(180deg,#DFF0F7 0%,#FDF6EC 24%,#FFF9F0 100%);position:relative}
+  .fv{position:relative}
+  .fv img{width:100%;height:610px;object-fit:cover;object-position:top;display:block}
+  .fv .veil{position:absolute;inset:auto 0 0 0;padding:70px 22px 20px;background:linear-gradient(transparent,rgba(253,246,236,.97) 58%)}
+  .fv .kick{font-size:11px;letter-spacing:.2em;color:#7A97A3;font-weight:800}
+  .fv h1{font-size:31px;line-height:1.45;font-weight:800;margin-top:8px}
+  .fv p{font-size:13px;line-height:1.85;color:#7A6555;margin-top:8px}
+  .fv p b{color:#503A30}
+  .bubble{margin:14px 20px 0;background:#FFF1F5;border-radius:20px;padding:14px 16px;font-size:13.5px;line-height:1.9}
+  .bubble .from{font-size:10.5px;letter-spacing:.12em;color:#C08AA0;font-weight:800}
+  .cta{display:block;text-decoration:none;margin:16px 20px 0;background:#8FBF6B;color:#fff;text-align:center;border-radius:99px;padding:17px;font-size:16.5px;font-weight:800;box-shadow:0 12px 26px rgba(143,191,107,.35)}
+  .cta small{display:block;font-size:11px;font-weight:400;margin-top:3px;opacity:.94}
+  section{padding:34px 20px 0}
+  .sk{font-size:10.5px;letter-spacing:.16em;color:#B3814D;font-weight:800}
+  h2{font-family:"Hiragino Mincho ProN",serif;font-size:22px;line-height:1.55;margin-top:6px}
+  .lead{font-size:12.5px;color:#7A6555;line-height:1.9;margin-top:8px}
+  .step{display:flex;gap:13px;margin-top:14px;background:#FFFDF8;border:1px solid #F5E9DA;border-radius:20px;padding:12px;align-items:center}
+  .step img{width:86px;height:108px;object-fit:cover;object-position:top;border-radius:14px;flex:none}
+  .step .no{font-size:10px;letter-spacing:.14em;color:#C08AA0;font-weight:800}
+  .step h3{font-size:15px;margin-top:3px}
+  .step p{font-size:12px;color:#7A6555;line-height:1.8;margin-top:4px}
+  .story{display:flex;gap:12px;margin-top:12px}
+  .scard{flex:1;background:#FFFDF8;border:1px solid #F5E9DA;border-radius:18px;overflow:hidden}
+  .scard img{width:100%;height:128px;object-fit:cover;object-position:center 38%;display:block}
+  .scard .tx{padding:10px 12px;font-size:11.5px;line-height:1.8;color:#7A6555}
+  .scard .tx b{color:#503A30;font-size:12.5px}
+  .room{display:flex;gap:10px;margin-top:14px}
+  .room figure{flex:1;text-align:center}
+  .room img{width:100%;height:150px;object-fit:cover;object-position:center 30%;border-radius:16px;display:block}
+  .room figcaption{font-size:10.5px;color:#7A6555;margin-top:6px;font-weight:700;line-height:1.6}
+  .week{margin-top:14px;background:#FFFDF8;border:1px solid #F5E9DA;border-radius:20px;padding:14px}
+  .wrow{display:flex;align-items:center;gap:11px;padding:8px 0;border-bottom:1px dashed #F0E2CE;font-size:12.5px;line-height:1.7}
+  .wrow:last-child{border-bottom:0}
+  .wrow img{width:40px;height:50px;object-fit:cover;object-position:top;border-radius:9px;flex:none}
+  .wrow .d{font-weight:800;color:#B3814D;font-size:11px;white-space:nowrap}
+  .qa{margin-top:12px;background:#FFFDF8;border:1px solid #F5E9DA;border-radius:16px;padding:13px 15px}
+  .qa h3{font-size:13.5px}
+  .qa p{font-size:12px;color:#7A6555;line-height:1.85;margin-top:4px}
+  .promise{background:#503A30;color:#FBF3E4;border-radius:22px;padding:20px;margin-top:14px}
+  .promise h3{font-family:"Hiragino Mincho ProN",serif;font-size:18px;line-height:1.6}
+  .promise p{font-size:12px;line-height:1.9;color:#D9C7B2;margin-top:8px}
+  .final{text-align:center;padding:34px 20px 0}
+  .final img{width:190px;height:236px;object-fit:cover;object-position:top;border-radius:20px;box-shadow:0 14px 30px rgba(122,151,163,.25)}
+  .final h2{margin-top:14px;font-size:23px}
+  .final .sub{font-size:12.5px;color:#7A6555;line-height:1.85;margin-top:8px}
+  .foot{text-align:center;color:#A98B7A;font-size:10.5px;margin-top:20px;line-height:1.9;padding:0 20px}
+</style></head>
+<body><div class="phone">
+  <div class="fv">
+    <img src="stage2.jpg" alt="">
+    <div class="veil">
+      <div class="kick">SELF-CARE PET ・ 巫女ねこ</div>
+      <h1>あなたのケアが、<br>ねこの冒険になる。</h1>
+      <p>今日、スキンケアを1つ終えたら、<b>今夜ねこが冒険に出ます</b>。帰ってきたねこは、物語と小さな発見を持ってきます。数字に急かされる育成は、ここにはありません。</p>
+    </div>
+  </div>
+  <div class="bubble"><div class="from">冒険から帰ってきたよ</div>「川辺で光る石を拾ったの。あなたのケアが貯まったから、遠くまで行けたんだよ。」</div>
+  <a class="cta" href="./a/">ねこに会いに行く<small>今日のケアは、小さなこと1つで十分です</small></a>
+
+  <section>
+    <div class="sk">HOW IT WORKS ・ 3つのステップ</div>
+    <h2>やることは、ケアだけ。</h2>
+    <div class="step"><img src="stage1.jpg"><div><div class="no">STEP 1</div><h3>ねこと出会う</h3><p>最初は「ほのかな光」。小さな姿のねこが、あなたの部屋に住み始めます。</p></div></div>
+    <div class="step"><img src="scene-wipe.jpg"><div><div class="no">STEP 2</div><h3>自分のケアをする</h3><p>水を飲む、シートで拭く、服を選ぶ。小さなケアが、ねこの冒険のエネルギーになります。</p></div></div>
+    <div class="step"><img src="scene-wave.jpg"><div><div class="no">STEP 3</div><h3>物語を持って帰ってくる</h3><p>冒険のあと、ねこは出来事を話してくれます。ときどき、新しい髪飾りや部屋のものを発見します。</p></div></div>
+  </section>
+
+  <section>
+    <div class="sk">STORIES ・ 冒険の記録</div>
+    <h2>帰ってくるたび、話が増える。</h2>
+    <p class="lead">報酬はポイントではなく、出来事です。だから「貯めて終わり」にならず、次に開く理由が物語の続きになります。</p>
+    <div class="story">
+      <div class="scard"><img src="scene-sleepy.jpg"><div class="tx"><b>よく眠れた夜の翌朝</b><br>「枕の妖精に会ったよ。あなたが早く寝たからだね。」</div></div>
+      <div class="scard"><img src="scene-night.jpg"><div class="tx"><b>夜のケアが続いた日</b><br>「星屑の鈴を見つけたの。今夜から首につけるね。」</div></div>
+    </div>
+    <div class="story">
+      <div class="scard"><img src="scene-stretch.jpg"><div class="tx"><b>体を伸ばした日</b><br>「丘の上で雲を追いかけたよ。体が軽い日は、遠くまで行けるの。」</div></div>
+      <div class="scard"><img src="scene-outfit.jpg"><div class="tx"><b>コーデを決めた日</b><br>「鏡の国の扉が開いたよ。今日の服、似合ってたからだね。」</div></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sk">ROOM ・ 部屋が育つ</div>
+    <h2>発見は、部屋に残ります。</h2>
+    <p class="lead">冒険の発見は消えません。髪飾りが増え、服が増え、部屋が少しずつ「ねことあなたの場所」になっていきます。</p>
+    <div class="room">
+      <figure><img src="scene-lipstick.jpg"><figcaption>冒険の発見<br>「夕日のリップ」</figcaption></figure>
+      <figure><img src="stage3.jpg"><figcaption>姿の変化<br>「満ちていく光」</figcaption></figure>
+      <figure><img src="scene-dryer.jpg"><figcaption>ケアの積み重ね<br>「ふわふわの毛並み」</figcaption></figure>
+    </div>
+  </section>
+
+  <section>
+    <div class="sk">ONE WEEK ・ 1週間のねこ</div>
+    <h2>1週間で、ここまで変わる。</h2>
+    <div class="week">
+      <div class="wrow"><img src="stage1.jpg"><span class="d">1日目</span><span>出会いの日。ねこはまだ、ほのかな光。</span></div>
+      <div class="wrow"><img src="stage1.jpg"><span class="d">3日目</span><span>最初の冒険。川辺の石の物語が届く。</span></div>
+      <div class="wrow"><img src="stage2.jpg"><span class="d">5日目</span><span>姿が「やわらかな光」に。髪飾りの発見。</span></div>
+      <div class="wrow"><img src="stage3.jpg"><span class="d">7日目</span><span>「満ちていく光」。部屋にものが増え、物語は続く。</span></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sk">QUESTIONS ・ 始める前の不安に</div>
+    <h2>続かない日があっても、大丈夫。</h2>
+    <div class="qa"><h3>できない日はどうなる？</h3><p>何も減りません。ねこは静かに待っているだけです。翌日、物語の続きから再開できます。</p></div>
+    <div class="qa"><h3>時間はかかる？</h3><p>ケアは普段のことです。水を飲む、顔を拭く、服を選ぶ。その「ついで」が冒険の燃料になります。</p></div>
+    <div class="qa"><h3>数字や順位はある？</h3><p>ありません。育ちは、ねこの姿と物語でだけ分かります。比べる相手も、期限もありません。</p></div>
+    <div class="promise"><h3>数字で、急かさない。</h3><p>この場所に、レベルも順位も期限もありません。育ちは姿と物語でだけ分かります。それが、長く続く形だと考えています。</p></div>
+  </section>
+
+  <div class="final">
+    <img src="stage4.jpg" alt="">
+    <h2>今夜の冒険は、<br>今日のケア1つから。</h2>
+    <p class="sub">ねこは、あなたのケアを待っています。最初の物語は、今夜届きます。</p>
+    <a class="cta" href="./a/" style="margin:16px 0 0">ねこに会いに行く<small>最初の冒険は、今日のケア1つから</small></a>
+  </div>
+  <div class="foot">オーラ育成（エナエマ拡張）・ ねこのオーラ<br>育成の記録は、あなたの端末の中にだけ残ります</div>
+</div></body></html>
