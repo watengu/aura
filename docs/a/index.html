@@ -35,6 +35,11 @@
   .tile{width:24px;height:24px;border-radius:8px;background:#F3E7D3}
   .tile.on{background:linear-gradient(135deg,#F6C6D6,#F9E29C)}
   .note{color:var(--sub);font-size:11px;line-height:1.8;margin-top:8px}
+  .cat{font-size:12px;letter-spacing:.1em;color:var(--sub);font-weight:700;margin:16px 0 8px}
+  .recap{background:linear-gradient(160deg,#FFF1F5,#FFF8E6);border:1px solid #F6C6D6;border-radius:20px;padding:15px 16px}
+  .recap .rc-stage{font-family:"Hiragino Mincho ProN",serif;font-size:16px}
+  .recap .rc-line{font-size:12.5px;line-height:1.9;color:#7A6555;margin-top:5px}
+  .recap .rc-line b{color:var(--ink)}
   .foot{margin-top:26px;text-align:center;color:var(--sub);font-size:11px;line-height:1.9}
   a{color:var(--pink)}
 </style>
@@ -59,10 +64,18 @@
   </div>
 
   <h2>今日の美容タスク</h2>
+  <p class="note" style="margin-top:0">タスクは「ケアの置き場」ごとに分かれています。今日できるものだけ、で大丈夫。</p>
+  <div class="cat">いつものケア</div>
+  <button class="task" data-pt="50" data-name="水を飲む"><span class="box"></span>水を飲む<span class="pt">+50 オーラ</span></button>
+  <button class="task" data-pt="50" data-name="姿勢を伸ばす"><span class="box"></span>姿勢を伸ばす<span class="pt">+50 オーラ</span></button>
+  <div class="cat">朝と夜のケア</div>
   <button class="task" data-pt="100" data-name="朝のスキンケア"><span class="box"></span>朝のスキンケア<span class="pt">+100 オーラ</span></button>
   <button class="task" data-pt="150" data-name="骨格に合うコーデを選ぶ"><span class="box"></span>骨格に合うコーデを選ぶ<span class="pt">+150 オーラ</span></button>
   <button class="task" data-pt="100" data-name="夜のボディケア"><span class="box"></span>夜のボディケア<span class="pt">+100 オーラ</span></button>
-  <p class="note">できない日は増減なし。オーラは減らず、ねこが責めることもありません。</p>
+  <div class="cat">こんどのケア</div>
+  <button class="task" data-pt="100" data-name="コスメの買い替え時期をチェック"><span class="box"></span>コスメの買い替え時期をチェック<span class="pt">+100 オーラ</span></button>
+  <button class="task" data-pt="150" data-name="美容院の予約をする"><span class="box"></span>美容院の予約をする<span class="pt">+150 オーラ</span></button>
+  <p class="note">できない日は増減なし。オーラは減らず、ねこが責めることもありません。「こんどのケア」は、思い出した日で大丈夫です。</p>
 
   <h2>つづきは、ここから</h2>
   <div id="remaining"></div>
@@ -72,38 +85,50 @@
   <div class="tiles" id="tiles"></div>
   <p class="note">タイルが埋まっていく1枚絵で、育ちが見えます。空きマスは罰ではなく、ただの空白です。</p>
 
+  <h2>今週のねこ</h2>
+  <div class="recap" id="recap"></div>
+  <p class="note">週のカードは、この端末の中にだけ残ります。見せるかどうかは、あなた次第です。</p>
+
   <div class="foot">
-    オーラ育成 v0.2 ・ パターンA（土台）<br>
+    オーラ育成 v0.3 ・ パターンA（土台）<br>
     <a href="../">オーラ育成の紹介ページへ</a> ・ <a href="../b/">保管中のパターンBを見る</a>
   </div>
 </div>
 <script>
-  var PTS=[100,150,100];
   var STAGES=[
     {at:0,   name:"ほのかな光",   img:"img/stage1.jpg", msg:"今日も来てくれてありがとう。できそうなものから、ひとつだけやってみて。"},
     {at:100, name:"やわらかな光", img:"img/stage2.jpg", msg:"わあ、光が増えた。あなたのケアが、わたしの輝きになってる。"},
     {at:250, name:"満ちていく光", img:"img/stage3.jpg", msg:"すごい、今日はよく育った日。この調子で、最後の姿まであと少し。"},
     {at:350, name:"かがやく光",   img:"img/stage4.jpg", msg:"今日は満ちたよ。いちばん上の姿になったね。あとはゆっくり休んで。続きはまた明日。"}
   ];
-  var KEY="aura-v02";
+  var KEY="aura-v03", OLDKEY="aura-v02";
+  var tasks=[].slice.call(document.querySelectorAll(".task"));
+  var PTS=tasks.map(function(b){ return parseInt(b.dataset.pt,10)||0; });
+  var NT=tasks.length;
   function todayStr(){ var d=new Date(); return d.getFullYear()+"-"+("0"+(d.getMonth()+1)).slice(-2)+"-"+("0"+d.getDate()).slice(-2); }
+  function blankDone(){ var a=[]; for(var i=0;i<NT;i++) a.push(false); return a; }
   function load(){
     var s=null; try{ s=JSON.parse(localStorage.getItem(KEY)||"null"); }catch(e){}
-    if(!s||typeof s.total!=="number"){ s={total:0,day:todayStr(),done:[false,false,false],history:[]}; }
+    if(!s||typeof s.total!=="number"){
+      s={total:0,day:todayStr(),done:blankDone(),history:[]};
+      try{ var o=JSON.parse(localStorage.getItem(OLDKEY)||"null");
+        if(o&&typeof o.total==="number"){ s.total=o.total; s.history=(o.history||[]).map(function(h){ return {d:h.d,n:h.n||0,p:0}; }); }
+      }catch(e){}
+    }
+    if(!Array.isArray(s.done)||s.done.length!==NT){ s.done=blankDone(); }
     if(s.day!==todayStr()){
-      var n=s.done.filter(Boolean).length;
-      s.history.push({d:s.day,n:n}); if(s.history.length>13) s.history=s.history.slice(-13);
-      s.day=todayStr(); s.done=[false,false,false];
+      var n=0,p=0; s.done.forEach(function(d,i){ if(d){ n++; p+=PTS[i]; } });
+      s.history.push({d:s.day,n:n,p:p}); if(s.history.length>13) s.history=s.history.slice(-13);
+      s.day=todayStr(); s.done=blankDone();
       save(s);
     }
     return s;
   }
   function save(s){ try{ localStorage.setItem(KEY,JSON.stringify(s)); }catch(e){} }
   var state=load();
-  var tasks=[].slice.call(document.querySelectorAll(".task"));
   function stageOf(total){ var cur=STAGES[0],nx=null; for(var i=0;i<STAGES.length;i++){ if(total>=STAGES[i].at){ cur=STAGES[i]; nx=STAGES[i+1]||null; } } return [cur,nx]; }
   function render(){
-    var todayPts=0; state.done.forEach(function(d,i){ if(d) todayPts+=PTS[i]; });
+    var todayPts=0,todayN=0; state.done.forEach(function(d,i){ if(d){ todayPts+=PTS[i]; todayN++; } });
     document.getElementById("today").textContent="+"+todayPts;
     document.getElementById("total").textContent=state.total.toLocaleString();
     var sn=stageOf(state.total), cur=sn[0], nx=sn[1];
@@ -114,7 +139,7 @@
     document.getElementById("bubble").textContent=cur.msg;
     var allDone=state.done.every(Boolean);
     document.getElementById("tomorrow").style.display=allDone?"block":"none";
-    tasks.forEach(function(b,i){ if(state.done[i]){ b.classList.add("done"); b.querySelector(".box").textContent="✓"; } else { b.classList.remove("done"); b.querySelector(".box").textContent=""; } });
+    tasks.forEach(function(b,i){ if(state.done[i]){ b.classList.add("done"); b.querySelector(".box").textContent="\u2713"; } else { b.classList.remove("done"); b.querySelector(".box").textContent=""; } });
     var rem=document.getElementById("remaining"); rem.innerHTML="";
     var left=0;
     tasks.forEach(function(b,i){ if(!state.done[i]){ left++; var d=document.createElement("div"); d.className="rem"; d.innerHTML="<span>"+b.dataset.name+"</span><span class='pt'>+"+b.dataset.pt+" オーラ</span>"; rem.appendChild(d); } });
@@ -123,6 +148,13 @@
     var cells=state.history.map(function(h){ return h.n>0; }); cells.push(todayPts>0);
     while(cells.length<14) cells.unshift(false);
     cells.slice(-14).forEach(function(on){ var div=document.createElement("div"); div.className="tile"+(on?" on":""); t.appendChild(div); });
+    var week=state.history.slice(-6);
+    var days=week.filter(function(h){ return h.n>0; }).length+(todayN>0?1:0);
+    var adv=week.reduce(function(a,h){ return a+(h.n||0); },0)+todayN;
+    var wpts=week.reduce(function(a,h){ return a+(h.p||0); },0)+todayPts;
+    var rc=document.getElementById("recap");
+    if(days===0){ rc.innerHTML="<div class='rc-stage'>今週の物語は、これから。</div><div class='rc-line'>今日のケア1つで、最初の1行が書けます。姿は「"+cur.name+"」。</div>"; }
+    else{ rc.innerHTML="<div class='rc-stage'>姿は「"+cur.name+"」</div><div class='rc-line'>今週ケアした日 <b>"+days+"日</b> ・ ねこの冒険 <b>"+adv+"回</b><br>今週のオーラ <b>+"+wpts+"</b>（減ることはありません）</div>"; }
   }
   tasks.forEach(function(b,i){ b.addEventListener("click",function(){
     state.done[i]=!state.done[i];

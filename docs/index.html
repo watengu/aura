@@ -50,11 +50,29 @@
   .final img{width:190px;height:236px;object-fit:cover;object-position:top;border-radius:20px;box-shadow:0 14px 30px rgba(122,151,163,.25)}
   .final h2{margin-top:14px;font-size:23px}
   .final .sub{font-size:12.5px;color:#7A6555;line-height:1.85;margin-top:8px}
+  .cond{text-align:center;font-size:11.5px;color:#7A6555;margin-top:10px;letter-spacing:.04em}
+  .cond b{color:#503A30}
+  .tag2{display:inline-block;background:#F6C6D6;color:#8A3B57;font-size:10px;font-weight:800;border-radius:99px;padding:2px 9px;margin-bottom:5px;letter-spacing:.06em}
+  .shelf{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+  .shelf figure{text-align:center}
+  .shelf img{width:100%;height:104px;object-fit:cover;object-position:center 30%;border-radius:14px;display:block}
+  .shelf figcaption{font-size:10.5px;color:#7A6555;margin-top:5px;font-weight:700;line-height:1.55}
+  .shelf .empty{height:104px;border:1.5px dashed #E3CDB2;border-radius:14px;display:flex;align-items:center;justify-content:center;color:#C4A582;font-size:20px;background:#FFFDF8}
+  .stages{margin-top:14px;background:#FFFDF8;border:1px solid #F5E9DA;border-radius:18px;padding:13px 15px}
+  .stages .srow{display:flex;gap:10px;padding:7px 0;border-bottom:1px dashed #F0E2CE;font-size:12px;line-height:1.7}
+  .stages .srow:last-child{border-bottom:0}
+  .stages .sn{font-weight:800;color:#B3814D;white-space:nowrap}
+  .recap{margin-top:14px;background:linear-gradient(160deg,#FFF1F5,#FFF8E6);border:1px solid #F6C6D6;border-radius:22px;padding:16px}
+  .recap .rh{display:flex;gap:13px;align-items:center}
+  .recap img{width:74px;height:92px;object-fit:cover;object-position:top;border-radius:14px;flex:none}
+  .recap h3{font-family:"Hiragino Mincho ProN",serif;font-size:17px}
+  .recap ul{margin:10px 0 0 18px;font-size:12px;line-height:1.95;color:#7A6555}
+  .recap ul b{color:#503A30}
   .foot{text-align:center;color:#A98B7A;font-size:10.5px;margin-top:20px;line-height:1.9;padding:0 20px}
 </style></head>
 <body><div class="phone">
   <div class="fv">
-    <img src="stage2.jpg" alt="">
+    <img src="img/stage2.jpg" alt="">
     <div class="veil">
       <div class="kick">SELF-CARE PET ・ 巫女ねこ</div>
       <h1>あなたのケアが、<br>ねこの冒険になる。</h1>
@@ -62,14 +80,29 @@
     </div>
   </div>
   <div class="bubble"><div class="from">冒険から帰ってきたよ</div>「川辺で光る石を拾ったの。あなたのケアが貯まったから、遠くまで行けたんだよ。」</div>
-  <a class="cta" href="./a/">ねこに会いに行く<small>今日のケアは、小さなこと1つで十分です</small></a>
+  <a class="cta" href="./a/">ねこに会いに行く<small>登録なしで、そのまま触れます</small></a>
+  <div class="cond"><b>登録不要</b> ・ <b>無料</b> ・ 記録は<b>あなたの端末の中だけ</b></div>
 
   <section>
     <div class="sk">HOW IT WORKS ・ 3つのステップ</div>
     <h2>やることは、ケアだけ。</h2>
-    <div class="step"><img src="stage1.jpg"><div><div class="no">STEP 1</div><h3>ねこと出会う</h3><p>最初は「ほのかな光」。小さな姿のねこが、あなたの部屋に住み始めます。</p></div></div>
-    <div class="step"><img src="scene-wipe.jpg"><div><div class="no">STEP 2</div><h3>自分のケアをする</h3><p>水を飲む、シートで拭く、服を選ぶ。小さなケアが、ねこの冒険のエネルギーになります。</p></div></div>
-    <div class="step"><img src="scene-wave.jpg"><div><div class="no">STEP 3</div><h3>物語を持って帰ってくる</h3><p>冒険のあと、ねこは出来事を話してくれます。ときどき、新しい髪飾りや部屋のものを発見します。</p></div></div>
+    <div class="step"><img src="img/stage1.jpg"><div><div class="no">STEP 1</div><h3>ねこと出会う</h3><p>最初は「ほのかな光」。小さな姿のねこが、あなたの部屋に住み始めます。</p></div></div>
+    <div class="step"><img src="img/scene-wipe.jpg"><div><div class="no">STEP 2</div><h3>自分のケアをする</h3><p>水を飲む、シートで拭く、服を選ぶ。小さなケアが、ねこの冒険のエネルギーになります。</p></div></div>
+    <div class="step"><img src="img/scene-wave.jpg"><div><div class="no">STEP 3</div><h3>物語を持って帰ってくる</h3><p>冒険のあと、ねこは出来事を話してくれます。ときどき、新しい髪飾りや部屋のものを発見します。</p></div></div>
+  </section>
+
+  <section>
+    <div class="sk">CARE PLACES ・ ケアの置き場</div>
+    <h2>ケアは、4つの置き場に分かれます。</h2>
+    <p class="lead">することは全部「ケア」。置き場が分かれているから、今日できるものだけ選べます。どの置き場にも、減点はありません。</p>
+    <div class="story">
+      <div class="scard"><img src="img/scene-cream.jpg"><div class="tx"><b>いつものケア</b><br>水を飲む、姿勢を伸ばす、手を洗う。いつでもできる小さなこと。プラスのみで、悪かった日も減りません。</div></div>
+      <div class="scard"><img src="img/scene-facewash.jpg"><div class="tx"><b>朝と夜のケア</b><br>朝の洗顔と日焼け止め、夜のスキンケア。毎日の約束です。できない日も、何も起きません。</div></div>
+    </div>
+    <div class="story">
+      <div class="scard"><img src="img/scene-spray.jpg"><div class="tx"><b>こんどのケア</b><br>コスメの買い替え、美容院の予約、衣替え。期限で赤くなったりはしない、「思い出した時に置く場所」です。</div></div>
+      <div class="scard"><img src="img/scene-night.jpg"><div class="tx"><b>冒険と発見</b><br>ケアの蓄積が変わる先。今夜の冒険と物語、髪飾りや部屋の発見です。お金で買う報酬はありません。</div></div>
+    </div>
   </section>
 
   <section>
@@ -77,12 +110,12 @@
     <h2>帰ってくるたび、話が増える。</h2>
     <p class="lead">報酬はポイントではなく、出来事です。だから「貯めて終わり」にならず、次に開く理由が物語の続きになります。</p>
     <div class="story">
-      <div class="scard"><img src="scene-sleepy.jpg"><div class="tx"><b>よく眠れた夜の翌朝</b><br>「枕の妖精に会ったよ。あなたが早く寝たからだね。」</div></div>
-      <div class="scard"><img src="scene-night.jpg"><div class="tx"><b>夜のケアが続いた日</b><br>「星屑の鈴を見つけたの。今夜から首につけるね。」</div></div>
+      <div class="scard"><img src="img/scene-sleepy.jpg"><div class="tx"><span class="tag2">朝と夜のケア</span><br><b>よく眠れた夜の翌朝</b><br>「枕の妖精に会ったよ。あなたが早く寝たからだね。」</div></div>
+      <div class="scard"><img src="img/scene-night.jpg"><div class="tx"><span class="tag2">朝と夜のケア</span><br><b>夜のケアが続いた日</b><br>「星屑の鈴を見つけたの。今夜から首につけるね。」</div></div>
     </div>
     <div class="story">
-      <div class="scard"><img src="scene-stretch.jpg"><div class="tx"><b>体を伸ばした日</b><br>「丘の上で雲を追いかけたよ。体が軽い日は、遠くまで行けるの。」</div></div>
-      <div class="scard"><img src="scene-outfit.jpg"><div class="tx"><b>コーデを決めた日</b><br>「鏡の国の扉が開いたよ。今日の服、似合ってたからだね。」</div></div>
+      <div class="scard"><img src="img/scene-stretch.jpg"><div class="tx"><span class="tag2">いつものケア</span><br><b>体を伸ばした日</b><br>「丘の上で雲を追いかけたよ。体が軽い日は、遠くまで行けるの。」</div></div>
+      <div class="scard"><img src="img/scene-outfit.jpg"><div class="tx"><span class="tag2">こんどのケア</span><br><b>コーデを決めた日</b><br>「鏡の国の扉が開いたよ。今日の服、似合ってたからだね。」</div></div>
     </div>
   </section>
 
@@ -91,26 +124,53 @@
     <h2>発見は、部屋に残ります。</h2>
     <p class="lead">冒険の発見は消えません。髪飾りが増え、服が増え、部屋が少しずつ「ねことあなたの場所」になっていきます。</p>
     <div class="room">
-      <figure><img src="scene-lipstick.jpg"><figcaption>冒険の発見<br>「夕日のリップ」</figcaption></figure>
-      <figure><img src="stage3.jpg"><figcaption>姿の変化<br>「満ちていく光」</figcaption></figure>
-      <figure><img src="scene-dryer.jpg"><figcaption>ケアの積み重ね<br>「ふわふわの毛並み」</figcaption></figure>
+      <figure><img src="img/scene-lipstick.jpg"><figcaption>冒険の発見<br>「夕日のリップ」</figcaption></figure>
+      <figure><img src="img/stage3.jpg"><figcaption>姿の変化<br>「満ちていく光」</figcaption></figure>
+      <figure><img src="img/scene-dryer.jpg"><figcaption>ケアの積み重ね<br>「ふわふわの毛並み」</figcaption></figure>
     </div>
+    <p class="lead" style="margin-top:16px"><b>発見コレクション</b> ― 貯まっていく先は、この棚です。集めるのは買い物ではなく、冒険の発見だけ。</p>
+    <div class="shelf">
+      <figure><img src="img/stage2.jpg"><figcaption>桜の髪飾り</figcaption></figure>
+      <figure><img src="img/scene-night.jpg"><figcaption>星屑の鈴</figcaption></figure>
+      <figure><img src="img/scene-lipstick.jpg"><figcaption>夕日のリップ</figcaption></figure>
+      <figure><img src="img/scene-dryer.jpg"><figcaption>ふわふわの毛並み</figcaption></figure>
+      <figure><img src="img/stage3.jpg"><figcaption>満ちていく光の姿</figcaption></figure>
+      <figure><div class="empty">？</div><figcaption>まだ見ぬ発見</figcaption></figure>
+    </div>
+    <div class="stages">
+      <div class="srow"><span class="sn">ほのかな光</span><span>はじまりの姿。増えるもの：最初の物語</span></div>
+      <div class="srow"><span class="sn">やわらかな光</span><span>目安あと100オーラ。増えるもの：行ける冒険が、少し遠くに</span></div>
+      <div class="srow"><span class="sn">満ちていく光</span><span>目安あと250オーラ。増えるもの：物語の種類と、部屋の発見</span></div>
+      <div class="srow"><span class="sn">かがやく光</span><span>目安あと350オーラ。増えるもの：いちばん遠くの冒険の物語</span></div>
+    </div>
+    <p class="note" style="color:#9A7B68;font-size:11px;line-height:1.8;margin-top:8px">数字は評価ではなく、目安の演出です。比べる相手も、期限もありません。</p>
   </section>
 
   <section>
     <div class="sk">ONE WEEK ・ 1週間のねこ</div>
     <h2>1週間で、ここまで変わる。</h2>
     <div class="week">
-      <div class="wrow"><img src="stage1.jpg"><span class="d">1日目</span><span>出会いの日。ねこはまだ、ほのかな光。</span></div>
-      <div class="wrow"><img src="stage1.jpg"><span class="d">3日目</span><span>最初の冒険。川辺の石の物語が届く。</span></div>
-      <div class="wrow"><img src="stage2.jpg"><span class="d">5日目</span><span>姿が「やわらかな光」に。髪飾りの発見。</span></div>
-      <div class="wrow"><img src="stage3.jpg"><span class="d">7日目</span><span>「満ちていく光」。部屋にものが増え、物語は続く。</span></div>
+      <div class="wrow"><img src="img/stage1.jpg"><span class="d">1日目</span><span>出会いの日。増えたもの：ねこの姿（ほのかな光）</span></div>
+      <div class="wrow"><img src="img/stage1.jpg"><span class="d">3日目</span><span>最初の冒険。増えたもの：物語「川辺の石」</span></div>
+      <div class="wrow"><img src="img/stage2.jpg"><span class="d">5日目</span><span>増えたもの：姿「やわらかな光」と、発見「桜の髪飾り」</span></div>
+      <div class="wrow"><img src="img/stage3.jpg"><span class="d">7日目</span><span>増えたもの：姿「満ちていく光」と、部屋のもの。物語は続く</span></div>
     </div>
+    <div class="recap">
+      <div class="rh"><img src="img/stage3.jpg"><div><div class="sk">WEEKLY RECAP ・ 今週のねこ</div><h3>週の終わりに、1枚残ります。</h3></div></div>
+      <ul>
+        <li>物語 <b>3つ</b> ― 川辺の石／星屑の鈴／鏡の国の扉</li>
+        <li>発見 <b>2つ</b> ― 桜の髪飾り／夕日のリップ</li>
+        <li>姿 ― やわらかな光 → <b>満ちていく光</b></li>
+      </ul>
+    </div>
+    <p class="note" style="color:#9A7B68;font-size:11px;line-height:1.8;margin-top:8px">これはカードの見本です。あなたの週のカードは、体験ページで実際に残ります。見せるかどうかは、あなた次第です。</p>
   </section>
 
   <section>
     <div class="sk">QUESTIONS ・ 始める前の不安に</div>
     <h2>続かない日があっても、大丈夫。</h2>
+    <div class="qa"><h3>どうやって始めるの？</h3><p>下のボタンから、そのまま触れます。登録も、アプリのダウンロードもいりません。</p></div>
+    <div class="qa"><h3>お金はかかる？</h3><p>無料で触れます。育成の記録は、あなたの端末の中にだけ残ります。</p></div>
     <div class="qa"><h3>できない日はどうなる？</h3><p>何も減りません。ねこは静かに待っているだけです。翌日、物語の続きから再開できます。</p></div>
     <div class="qa"><h3>時間はかかる？</h3><p>ケアは普段のことです。水を飲む、顔を拭く、服を選ぶ。その「ついで」が冒険の燃料になります。</p></div>
     <div class="qa"><h3>数字や順位はある？</h3><p>ありません。育ちは、ねこの姿と物語でだけ分かります。比べる相手も、期限もありません。</p></div>
@@ -118,10 +178,11 @@
   </section>
 
   <div class="final">
-    <img src="stage4.jpg" alt="">
+    <img src="img/stage4.jpg" alt="">
     <h2>今夜の冒険は、<br>今日のケア1つから。</h2>
     <p class="sub">ねこは、あなたのケアを待っています。最初の物語は、今夜届きます。</p>
-    <a class="cta" href="./a/" style="margin:16px 0 0">ねこに会いに行く<small>最初の冒険は、今日のケア1つから</small></a>
+    <a class="cta" href="./a/" style="margin:16px 0 0">ねこに会いに行く<small>登録なしで、そのまま触れます</small></a>
+    <div class="cond"><b>登録不要</b> ・ <b>無料</b> ・ 記録は<b>あなたの端末の中だけ</b></div>
   </div>
-  <div class="foot">オーラ育成（エナエマ拡張）・ ねこのオーラ<br>育成の記録は、あなたの端末の中にだけ残ります</div>
+  <div class="foot">オーラ育成（エナエマ拡張）・ ねこのオーラ<br>育成の記録は、あなたの端末の中にだけ残ります<br>本編の美容タスクアプリ <a href="https://enaema-ruddy.vercel.app" style="color:#B3814D;font-weight:700">エナエマはこちら</a></div>
 </div></body></html>
